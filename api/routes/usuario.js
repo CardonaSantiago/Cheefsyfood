@@ -1,7 +1,6 @@
 const { Router } = require('express')
 const router =Router();
 const mongoose =require('mongoose');
-const { UserContext } = require('../../client/src/App');
 const requireLogin = require('../middlewares/requireLogin')
 const Receta = mongoose.model('Receta')
 const Usuario = mongoose.model('Usuario')
@@ -74,9 +73,9 @@ router.put('/updatepic',requireLogin,(req,res)=>{
 
 router.post('/search-users',(req,res)=>{
     let userPattern = new RegExp("^"+req.body.query)
-    UserContext.find({email:{$regex:userPattern}})
-    .then(user=>{
-        res.json({user})
+    Usurario.find({email:{$regex:userPattern}})
+    .then(usuario=>{
+        res.json({usuario})
     }).catch(err=>{
         console.log(err)
     })

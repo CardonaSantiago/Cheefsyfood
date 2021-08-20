@@ -1,29 +1,26 @@
 //Dependencias
 //const express = require('express');
-import express from 'express';
-import cors from 'cors';
+const express = require('express')
+const cors = require('cors')
 
 // Crear el servidor
 const app =  express();
-import mongoose from 'mongoose';
-const {connect, connection} = mongoose
-
-
-const MONGOURI = import('../api/config/dev')
+const mongoose = require('mongoose')
 const PORT = process.env.PORT || 5000
+const {MONGOURI} = require('./config/keys')
 
 // conectar con mongodb
-connect(MONGOURI,{
+mongoose.connect(MONGOURI,{
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex:true,
     useFindAndModify:false,
     
 })
-connection.on('connected',()=>{
+mongoose.connection.on('connected',()=>{
     console.log('conectado con mongo')
 })
-connection.on('error',(err)=>{
+mongoose.connection.on('error',(err)=>{
     console.log('err conectando con mongo', err)
 })
 

@@ -36,6 +36,22 @@ const NavBar =()=>{
       }
     }
 
+    const fetchUsers=(query)=>{
+      setSearch(query)
+      fetch('/search-users',{
+        method:"post",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          query
+        })
+      }).then(res=>res.json())
+      .then(results=>{
+        console.log(results)
+      })
+    }
+
     
     
     return(
@@ -43,9 +59,7 @@ const NavBar =()=>{
           <div className="nav-wrapper white">
             <Link to={state?"/":"/signin"} className="brand-logo left">Cheefsy Food</Link>
             <ul id="nav-mobile" className="right">
-              {
-                renderList()
-              }
+              {renderList()}
             </ul>
           </div>
           <div id="modal1" className="modal" ref={searchModal} style={{color: 'black'}}>
@@ -58,10 +72,10 @@ const NavBar =()=>{
               onChange={(e)=>fetchUsers(e.target.value)}
               
               />
-              <ul className="collection">
-                <li className="collection-item">Alvin</li>
-                <li className="collection-item">Alvin</li>
-              </ul>
+                <ul className="collection">
+                  <li className="collection-item">Alvin</li>
+                  <li className="collection-item">Alvin</li>
+                </ul>
             </div>
             <div className="modal-footer">
               <button className="modal-close waves-effect waves-green btn-flat">Agree</button>
