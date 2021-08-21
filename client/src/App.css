@@ -12,8 +12,12 @@ a{
 .color,h2{
     color: #ffa500;
 }
-.collection-items{
+.collection-item{
     width:100%;
+}
+.boton-list{
+    width:100%;
+    text-align: left;
 }
 
 /* Login*/
